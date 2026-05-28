@@ -27,7 +27,7 @@ app.use(helmet());
 // Limit queries to 10 per minute per IP[cite: 38].
 const llmRateLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute window
-  max: 10, // Max 10 requests per minute
+  max: 5, // Max 5 requests per minute
   message: {
     error:
       "oops! You've hit the rate limit. Please wait a minute before analyzing more data.",
@@ -47,7 +47,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // 3. Raw Data Explorer Route (with Server-Side Pagination)
-app.get("/api/dashboard/sales", llmRateLimiter, async (req, res) => {
+app.get("/api/dashboard/sales", async (req, res) => {
   try {
     // Get page and limit from query parameters, default to Page 1, 50 records per page
     const page = parseInt(req.query.page) || 1;
@@ -85,7 +85,7 @@ app.get("/api/dashboard/sales", llmRateLimiter, async (req, res) => {
 });
 
 // 2. The Core AI Generation Route
-app.post("/api/dashboard/query", async (req, res) => {
+app.post("/api/dashboard/query", llmRateLimiter, async (req, res) => {
   try {
     const { query } = req.body;
 
