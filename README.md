@@ -38,7 +38,7 @@ To ensure enterprise security, **the AI never queries the database directly.**
 1. **Clone the repository:**
 
    ```bash
-   git clone [https://github.com/yourusername/generative-ui-dashboard.git](https://github.com/yourusername/generative-ui-dashboard.git)
+   git clone [https://github.com/sheikhamir1/Generative-UI-Analytics-Dashboard.git](https://github.com/sheikhamir1/Generative-UI-Analytics-Dashboard.git)
    cd generative-ui-dashboard
    ```
 
